@@ -1,0 +1,119 @@
+/* Main components */
+.top {
+    padding: 10px 50px;
+    font-size: 18px;
+    overflow: auto;
+    background-color: #ff8a47;
+}
+
+.search_panel {
+    background: #ff8a47;
+    padding: 15px 50px;
+    overflow: auto;
+}
+
+.bottom {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    background-color: #ff8a47;
+}
+
+.division_body {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    text-rendering: optimizespeed;
+}
+
+.left {
+    flex-basis: 250px;
+    padding: 15px 20px 15px 50px;
+    float: left;
+}
+
+.right {
+    float: left;
+    padding: 15px 20px 50px 50px;
+    overflow: hidden;
+}
+
+/* Speific elements */
+
+.cat_list {
+    list-style-type: disc;
+    padding: 0;
+}
+
+.cat_list li {
+    margin: 0;
+    list-style: none;
+    padding: 10px 14px;
+}
+
+.cat_list li:hover {
+    background: #54c46c;
+    border-radius: 6px;
+}
+
+.item_wf {
+    padding: 10px 14px;
+}
+
+/* Buttons */
+.jenson {
+    color: #fff;
+    background: #54c46c;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 0;
+}
+
+/* Pagination of list of workflows */
+
+.pagination {
+    list-style-type: none;
+    margin: 20px 20px 80px 20px;
+    padding: 0;
+}
+
+.pagination li {
+    float: left;
+}
+
+/* Links appearance */
+
+a:link {
+    color: #ff8a47; 
+    background-color: transparent; 
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ff8a47;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff8a47;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #ff8a47;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.testing {
+    width: 40%;
+}
+
+.diagramm {
+    border-style: solid;
+}

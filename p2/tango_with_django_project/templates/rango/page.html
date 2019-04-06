@@ -1,0 +1,13 @@
+{% extends 'rango/base.html' %}
+
+{% block body_block %}
+    <div>
+        {% if page %}
+            <a href="{{ page.url }}">{{ page.title }}</a>
+            <div> This page has {{ page.views }} views!</div>
+        {% else %}
+            The specified page does not exist!
+        {% endif %}
+
+    </div>
+{% endblock %}

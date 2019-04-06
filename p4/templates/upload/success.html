@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block subheader %}
+
+{% endblock %}
+
+{% block left %}
+<p>Workflow <b>{{ wf.name }}</b> successfully uploaded</p>
+{% endblock %}
+
+{% block right %}
+    <h1>
+        {{ wf.name }}
+    </h1>
+
+    <h2>
+        {% for wf_cat in wf.category.all %}
+            <a href='/workflow_list/{{wf_cat.slug}}/'>
+                {% if forloop.counter > 1 %}
+                    <span>, </span>
+                {% endif %}
+                {{ wf_cat.name }}
+            </a>
+        {% endfor %}
+    </h2>
+
+    <p>
+        <b>KeyWords: </b>
+        {{ wf.keywords }}
+    </p>
+
+    <p>
+        <b>Description: </b>
+        {{ wf.description }}
+    </p>
+
+    <div>
+        <form action="/">
+            <input class='jenson' type="submit" value="Go to Home page"/>
+        </form>
+    </div>
+
+{% endblock %}

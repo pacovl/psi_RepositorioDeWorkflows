@@ -1,0 +1,73 @@
+{% extends 'find/base.html' %}
+
+{% block left %}
+    <h2>Categories</h2>
+
+    <ul class='cat_list'>
+        <li>
+                <a href='/'>All</a>
+        </li>
+        {% for cat in categories %}
+            <li>
+                <a href='/workflow_list/{{cat.slug}}/'>{{ cat.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>
+        <a href=''>Upload workflow</a>
+    </h3>
+{% endblock %}
+
+
+{% block right %}
+    <h2>
+        {% if category %}
+            {{category}}
+        {% else %}
+            Workflows
+        {% endif %}
+    </h2>
+
+    {% if result %}
+        {% for wf in workflows %}
+            <div class='item_wf'>
+                <a href='/workflow_detail/{{wf.id}}/{{wf.slug}}'>{{ wf.name }}</a>: 
+                {% if wf.description|length > 255 %}
+                    {{wf.description}}
+                {% else %}
+                    {{ wf.description }}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        {% if workflows.has_other_pages %}
+        <ul class="pagination">
+            {% if workflows.has_previous %}
+                <li><a href="?page={{ workflows.previous_page_number }}">&laquo;&nbsp;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;&nbsp;</span></li>
+            {% endif %}
+
+            {% for i in workflows.paginator.page_range %}
+                {% if workflows.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)&nbsp;</span></span></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a>&nbsp;</li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if workflows.has_next %}
+                <li><a href="?page={{ workflows.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+    {% else %}
+        <div>
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+{% endblock %}

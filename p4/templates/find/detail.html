@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block scripts %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- Load webcomponents support -->
+    <script src = "{% static 'js/webcomponents/webcomponents-loader.js' %}"></script>
+    <!-- link the web component code -->
+    <link rel="import" href="{% static 'scipion-workflow.html' %}">
+{% endblock %}
+
+
+{% block left %}
+    {% if result %}
+    <div class='diagramm'>
+        <scipion-workflow src = "/workflow_download_json/{{workflow.id}}/{{workflow.slug}}/"
+            height="400px" width="95%">
+        </scipion-workflow>
+    </div>
+    {% else %}
+    <div>
+        <form action="/">
+            <input class='jenson' type="submit" value="Go to Home page"/>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block right %}
+    {% if result %}
+        <h1>{{workflow.name}}</h1>
+
+        <h2>
+            {% for wf_cat in workflow.category.all %}
+                <a href='/workflow_list/{{wf_cat.slug}}/'>
+                    {% if forloop.counter > 1 %}
+                        <span>, </span>
+                    {% endif %}
+                    {{ wf_cat.name }}
+                </a>
+            {% endfor %}
+        </h2>
+
+        <p>
+            <b>KeyWords: </b>
+            {{ workflow.keywords }}
+        </p>
+
+        <p>
+            <b>Description: </b>
+            {{ workflow.description }}
+        </p>
+
+
+        <form id='workflow_form' action='/workflow_download/{{workflow.id}}/{{workflow.slug}}/' method="POST">
+            {% csrf_token %}
+            {{downloadform.as_table}}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <div class="g-recaptcha" data-sitekey="6LdgWn4UAAAAABJA74vzmZbZNYg6hVvQ94sevB-m"></div>
+            <button type="submit" class="jenson" name="add_wf" value="Download">Download</button>
+        </form>
+    {% else %}
+    <p>{{error}}</p>
+    {% endif %}
+{% endblock %}

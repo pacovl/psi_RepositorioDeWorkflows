@@ -1,0 +1,47 @@
+{% extends 'find/base.html' %}
+
+{% load staticfiles %}
+
+{% block left %}
+<img src="{% static "images/rango.jpg" %}" alt='wf diagram' />
+{% endblock %}
+
+{% block right %}
+    {% if result %}
+    <h1>{{workflow.name}}</h1>
+
+    <h2>
+        {% for wf_cat in workflow.category.all %}
+            <a href='/workflow_list/{{wf_cat.slug}}/'>
+                {% if forloop.counter > 1 %}
+                    <span>, </span>
+                {% endif %}
+                {{ wf_cat.name }}
+            </a>
+        {% endfor %}
+    </h2>
+
+    <p>
+        <b>KeyWords: </b>
+        {{ workflow.keywords }}
+    </p>
+
+    <p>
+        <b>Description: </b>
+        {{ workflow.description }}
+    </p>
+
+    <button class='jenson'>
+        Download    
+    </button>
+
+    {% else %}
+        <div>
+            <p>{{error}}</p>
+            <form action="/">
+                <input class='jenson' type="submit" value="Go to Home page" />
+            </form>
+        </div>
+    {% endif %}
+
+{% endblock %}

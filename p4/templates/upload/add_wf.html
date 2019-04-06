@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block subheader %}
+      
+{% endblock %}
+
+{% block content %}
+<form id='workflow_form' action="/add_workflow/" method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <table>
+    {{form.as_table}}
+    </table>
+    <input class='jenson' type="submit" name="add_wf" value="CreateWorkflow">
+</form>
+{% endblock %}

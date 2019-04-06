@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+<head>
+    <title>Workflow Repository - {% block title %}psi p3{% endblock %}</title>
+
+    {% block scripts %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}" />
+    {% endblock %}
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+    <div class="top">
+        {% block header %}
+        <a href="/"><img alt="logo" src="{% static 'images/logo.png' %}" ></a> 
+        {% endblock %}
+    </div>
+
+    <div class='search_panel'>
+        {% block subheader %}
+        <div class="search">
+            <form action="/workflow_search/" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <input class='jenson' type="submit" name="Search" value="by Name">
+            </form>
+        </div>
+        {% endblock %}
+    </div>
+
+
+    <div class='division_body'>
+        {% block content %}
+        <div class='left'>
+            {% block left %}
+            side panel
+            {% endblock %}
+        </div>
+        <div class='right'>
+            {% block right %}
+            main panel
+            {% endblock %}
+        </div>
+        {% endblock %}
+    </div>
+
+    <div class='bottom'>
+        {% block footer %}
+        Emilio Cuesta Fernandez & Francisco de Vicente Lana
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>
